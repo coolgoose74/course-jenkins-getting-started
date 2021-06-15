@@ -5,8 +5,8 @@ services:
   jenkins:
     image: jenkins/jenkins:lts-jdk11
     ports:
-    - "jenkins:9080:8080"
-      ## or - "9080:8080"  url: localhost:9080
+    - "127.0.0.1:9080:8080"
+      ## or - "9080:8080"  url: Jenkins:9080
     volumes:
     - ./jenkins_home_on_host:/var/jenkins_home
     # using a bind mount to the host `./jenkins_home` means I can easily peruse the jenkins_home files without needing to "get into the container"
@@ -22,9 +22,9 @@ services:
     image: mailhog/mailhog
     restart: unless-stopped
     ports:
-    - "8025:8025" # mailhog's web app (think test instance of gmail)
-    # "127.0.0.1:1025:8025" # jenkins will use `mails:8025` to send emails, only map to host if you want to send files
-    # "8025:7-8025"
+    - "127.0.0.1:8025:8025" # mailhog's web app (think test instance of gmail)
+    # "localhost:1025:8025" # jenkins will use `mails:8025` to send emails, only map to host if you want to send files
+    # "8025:8025" 
 
 
 ## NOTES:
